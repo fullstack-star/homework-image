@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+    <head>
+         <meta charset="UTF-8">
+         <title>deal images</title>
+         <style type="text/css">
+             *{
+                padding: 0;
+                margin: 0;
+             }
+
+             .imageWrapper{
+                position: relative;
+                width: 300px;
+                height: 300px;
+                margin: 50px auto;
+                border: 1px solid #d0d0d0;
+                overflow: hidden;
+             }
+             .imageWrapper .resizePic{
+                position: absolute;
+                z-index: 1;
+                height: 100%;
+                margin: 0;
+             }
+
+         </style>   
+    </head>
+    <body>
+        <div class="imageWrapper">
+
+        </div>
+
+
+        <script type="text/javascript">
+            var img = new Image();
+            img.src = "images/test1.png"
+            img.classList.add("resizePic");
+            var imgWrapper = document.querySelector(".imageWrapper");
+            imgWrapper.append(img);
+
+            img.onload = function(){
+                img.style.left = (img.width - 300) * -0.5 + "px";
+            }
+                        
+        </script>
+    </body>
+</html>
