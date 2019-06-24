@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>图片自适应</title>
+  <link rel="stylesheet" href="./css/normalize.css">
+  <style>
+  .box {
+    width: 400px;
+    margin: 30px auto;
+  }
+  .title {
+    position: relative;
+    z-index: 10;
+  }
+  .img-box {
+    width: 140px;
+    height: 200px;
+    border: 1px solid red;
+    position: relative;
+    margin: 0 auto;
+  }
+
+  .width-mid {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    height: 100%;
+  }
+
+  .height-mid {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+  }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h3 class="title">图片宽度过大</h3>
+    <div class="img-box">
+      <img src="./img/300X200.jpeg" alt="" srcset="">
+    </div>
+    <h3 class="title">图片高度过大</h3>
+    <div class="img-box">
+        <img src="./img/140X300.jpg" alt="" srcset="">
+    </div>
+  </div>
+ 
+  <script src="./libs/jquery.js"></script>
+  <script>
+   $(function(){
+     const WIDTH = 140
+     const HEIGHT = 200
+      $('.img-box').each(function() {
+        let $img = $(this).children('img');
+        let width = $img.width();
+        let height = $img.height();
+
+        if (width > WIDTH) {
+          $img.addClass('width-mid');
+        }
+
+        if (height > HEIGHT) {
+          $img.addClass('height-mid');
+        }
+
+      });
+    });
+  </script>
+</body>
+</html>
