@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>图片压缩实验</title>
+	<link rel="stylesheet" href="./normalize.css" />
+	<link rel="stylesheet" href="./index.css" />
+</head>
+
+<body>
+	<div class="zip">
+		<table class="table">
+			<caption>
+				<h2>压缩前后的图片对比</h2>
+				<p>滚动图片进行细节对比</p>
+			</caption>
+			<thead>
+				<tr>
+					<th>原图</th>
+					<th>压缩图</th>
+					<th class="note">备注</th>
+				</tr>
+			</thead>
+			<tbody class="j-proxy">
+				<tr>
+					<td>
+						<div class="viewer j-viewer" data-id="0" data-no="0">
+							<img src="./image/沙漠.jpg">
+						</div>
+					</td>
+					<td>
+						<div class="viewer j-viewer" data-id="0" data-no="1">
+							<img src="./image/optimize_沙漠.jpg">
+						</div>
+					</td>
+					<td>沙漠。<br>文件大小：2.7MB --> 832KB</td>
+				</tr>
+				<tr>
+					<td>
+						<div class="viewer j-viewer" data-id="1" data-no="0">
+							<img src="./image/渐变.png">
+						</div>
+					</td>
+					<td>
+						<div class="viewer j-viewer" data-id="1" data-no="1">
+							<img src="./image/optimize_渐变.png">
+						</div>
+					</td>
+					<td>渐变。<br>文件大小：262KB --> 207KB</td>
+				</tr>
+				<tr>
+					<td>
+						<div class="viewer j-viewer" data-id="2" data-no="0">
+							<img src="./image/透明.png">
+						</div>
+					</td>
+					<td>
+						<div class="viewer j-viewer" data-id="2" data-no="1">
+							<img src="./image/optimize_透明.png">
+						</div>
+					</td>
+					<td>透明。<br>文件大小：113KB --> 92KB</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<script>
+		var nodes_viewer = document.getElementsByClassName('j-viewer');
+		var cursor = {
+			clientX: 0,
+			clientY: 0,
+			scrollX: 0,
+			scrollY: 0,
+			flag: false
+		};
+		Array.prototype.forEach.call(nodes_viewer, function (item) {
+			item.addEventListener('scroll', function (e) {
+				var tg = e.target;
+				var syncTg = (function (tg) {
+					for (let i = 0; i < nodes_viewer.length; i++) {
+						var syncDataset = {
+							id: tg.dataset.id,
+							no: tg.dataset.no == 0 ? 1 : 0
+						};
+						if (nodes_viewer[i].dataset.id != syncDataset.id || nodes_viewer[i].dataset.no != syncDataset.no) continue;
+						return nodes_viewer[i];
+					}
+				})(tg);
+				window.requestAnimationFrame(function () {
+					tg.style = null;
+					syncTg.scrollLeft = tg.scrollLeft;
+					syncTg.scrollTop = tg.scrollTop;
+				})
+			});
+			item.addEventListener('mouseenter', function (e) {
+				var tg = e.target;
+				window.requestAnimationFrame(function () {
+					tg.focus();
+				})
+			});
+		});
+
+	</script>
+</body>
+
+</html>
