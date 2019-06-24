@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>img</title>
+    <style>
+      #bg-img {
+        width: 400px;
+        height: 200px;
+        background-image: url(./沙漠.jpg);
+        background-size: cover;
+        background-position: center center;
+      }
+      div {
+        overflow: hidden;
+        margin-top: 20px;
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    </style>
+  </head>
+  <body>
+    <h1>背景图css - cover 实现</h1>
+    <p id="bg-img"></p>
+
+    <h1>img标签，js实现</h1>
+    <div style="width:400px;height:200px" class="imgBox"></div>
+    <div style="width:200px;height:300px" class="imgBox"></div>
+
+    <script>
+      const imgUrls = ['./沙漠.jpg', './透明.png'];
+      [...document.getElementsByClassName('imgBox')].forEach((box, i) => {
+        const containerWidth = parseFloat(box.style.width);
+        const containerHeight = parseFloat(box.style.height);
+
+        const img = new Image();
+        img.src = imgUrls[i];
+
+        img.onload = function() {
+          const imgWidth = img.width;
+          const imgHeight = img.height;
+          const wScale = imgWidth / containerWidth;
+          const hScale = imgHeight / containerHeight;
+          img.style.position = 'relative';
+          if (wScale <= hScale) {
+            img.style.width = imgWidth / wScale + 'px';
+            img.style.top = -(img.height - containerHeight) / 2 + 'px';
+          } else {
+            img.style.height = imgHeight / hScale + 'px';
+            img.style.left = -(img.width - containerWidth) / 2 + 'px';
+          }
+        };
+        box.appendChild(img);
+      });
+    </script>
+  </body>
+</html>
