@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>自适应居中图片</title>
+	<link rel="stylesheet" href="normalize.css" />
+	<link rel="stylesheet" href="index.css" />
+</head>
+
+<body>
+	<p class="summary">
+		  ps:这是css布局的解决方案
+	</p>
+	<dl class="operate j-operate">
+		<dt>2种展示效果：</dt>
+		<dd><button data-fill="cover">cover效果</button></dd>
+		<dd><button data-fill="contain">contain效果</button></dd>
+	</dl>
+	<div>
+		<div class="horizontal contain j-horizontal">
+			<h2>水平居中</h2>
+			<div class="box">
+				<img src="./image/horizonal.png">
+			</div>
+		</div>
+
+		<div class="vertical contain j-vertical">
+			<h2>垂直居中</h2>
+			<div class="box">
+				<img src="./image/vertical.png">
+			</div>
+		</div>
+	</div>
+	<script>
+		var node_operate = document.getElementsByClassName('j-operate')[0],
+			node_horizontal = document.getElementsByClassName('j-horizontal')[0],
+			node_vertical = document.getElementsByClassName('j-vertical')[0];
+		node_operate.addEventListener('click', function (e) {
+			var tg = e.target;
+			if (tg.tagName !== "BUTTON") return;
+			if (tg.dataset.fill === "contain") {
+				node_horizontal.classList.add('contain');
+				node_vertical.classList.add('contain');
+			} else {
+				node_horizontal.classList.remove('contain');
+				node_vertical.classList.remove('contain');
+			}
+		});
+	</script>
+</body>
+
+</html>
