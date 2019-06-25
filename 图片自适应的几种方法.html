@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+    content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>图片居中</title>
+    <style>
+    .img-box {
+        position: relative;
+        margin: 10px auto;
+        width: 200px;
+        height: 200px;
+        overflow: hidden;
+        border: 1px solid #f0ad4e;
+    }
+    .img-box img {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .img-h-auto img {
+        width: 100%;
+        height: auto;
+    }
+    .img-w-auto img {
+        width: auto;
+        height: 100%;
+    }
+
+    .img-bg1 {
+        background: url("渐变.jpg") no-repeat center center;
+    }
+    .bg-cover {
+        background-size: cover;
+    }
+    .bg-contain {
+        background-size: contain;
+    }
+    </style>
+</head>
+<body>
+<!--图片短边 100% 或长边 100%，区别在于留白或裁剪-->
+
+<div class="img-box img-h-auto">
+    <img src="./渐变.jpg" alt="">
+</div>
+<div class="img-box img-w-auto">
+    <img src="./渐变.jpg" alt="">
+</div>
+
+<div class="img-box img-bg1 bg-contain"></div>
+<div class="img-box img-bg1 bg-cover"></div>
+
+<!--background 中的 cover contain 如果用 js 也是可以实现，获取图片高度宽度判断来决定短边或长边 100%-->
+</body>
+</html>
