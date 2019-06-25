@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>图片居中</title>
+    <style>
+        .to-center{
+            width: 200px;
+            height: 400px;
+            line-height: 400px; /* 当图片小时，垂直居中 */
+            text-align: center; /* 当图片小时，水平居中 */
+            border: 3px dotted red;
+            overflow: hidden;
+            position: relative;
+            margin: 0 auto;
+        }
+        .width-center{
+            position: absolute;
+            left: 50%;
+            top: 0;
+            transform: translateX(-50%);
+        }
+        .height-center{
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .all-center{
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%);
+        }
+    </style>
+</head>
+<body>
+<div class="to-center">
+    <img src="./沙漠.jpg" alt="">
+</div>
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script>
+    $(function(){
+        const $box = $(".to-center");
+        const W = $box.width();
+        const H = $box.height();
+        $box.each(function() {
+            let $img = $(this).children('img');
+            let width = $img.width();
+            let height = $img.height();
+
+            if(width > W && height > H){
+                $img.addClass('all-center');
+                return ;
+            }
+            if (width > W) {
+                $img.addClass('width-center');
+                return ;
+            }
+            if (height > H) {
+                $img.addClass('height-center');
+            }
+        });
+    });
+</script>
+</body>
+</html>
