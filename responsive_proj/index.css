@@ -15,7 +15,7 @@
 	margin-left: auto;
 	margin-right: auto;
 }
-.box::before {
+.box:before {
 	content: "";
 	position: absolute;
 	width: 100%;
@@ -32,11 +32,11 @@
 	max-width: 100%;
 	max-height: 100%;
 }
-/* contain效果 */
-.horizontal.contain .box img {
+/* cover效果 */
+.horizontal.cover .box img {
 	max-width: inherit;
 }
-.vertical.contain .box img {
+.vertical.cover .box img {
 	max-height: inherit;
 }
 /* operate面板 */
@@ -45,7 +45,7 @@
 	margin: 20px auto;
 	text-align: center;
 }
-.operate::after {
+.operate:after {
 	content: "";
 	display: block;
 	visibility: hidden;
@@ -58,6 +58,7 @@
 	margin-right: 15px;
 }
 button {
+	position: relative;
 	padding: 12px 25px;
 	font-size: 16px;
 	line-height: 1;
@@ -70,6 +71,16 @@ button {
 button:active {
 	background-color: #eee;
 }
-.summary{
+button.z-sel:before {
+	content: "";
+	position: absolute;
+	left: 0;
+	top: 50%;
+	width: 8px;
+	height: 8px;
+	background-color: orange;
+	transform: translate(9px, -50%);
+}
+.summary {
 	padding: 10px;
 }
