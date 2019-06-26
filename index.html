@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			.container{
+				width:500px;
+				height: 500px;
+				border: 1px solid #000;
+				overflow: hidden;
+				margin: 200px auto;
+				position: relative;
+			}
+			#show-img{
+				position: absolute;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<img id="show-img" src="沙漠.jpg"/>
+		</div>
+		
+		<script type="text/javascript">
+				imgDom = document.getElementById("show-img")
+				imgDom.onload = function(){
+					var height = imgDom.offsetHeight;
+					var width = imgDom.offsetWidth;
+					console.log(height<width)
+					if(height<=width){
+						imgDom.style.height="100%";
+						imgDom.style.transform="translateX(-50%)";
+						var newWidth = imgDom.offsetWidth;
+						imgDom.style.left="50%";
+					}else{
+						imgDom.style.width="100%";
+						imgDom.style.transform="translateY(-50%)";
+						var newHeight = imgDom.offsetHeight;
+						imgDom.style.top="50%";
+					}
+				}
+		</script>
+	</body>
+</html>
