@@ -9,19 +9,41 @@
 				margin: 0;
 			}
 			.container{
+				width:500px;
 				height: 500px;
 				border: 1px solid #000;
-				background: url(沙漠.jpg) no-repeat center center;
-				/*overflow: hidden;*/
+				overflow: hidden;
+				margin: 200px auto;
+				position: relative;
 			}
-			.show-img{
-				/*height: 100%;*/
+			#show-img{
+				position: absolute;
 			}
 		</style>
 	</head>
 	<body>
 		<div class="container">
-			<!--<img class="show-img" src="沙漠.jpg"/>-->
+			<img id="show-img" src="沙漠.jpg"/>
 		</div>
+		
+		<script type="text/javascript">
+				imgDom = document.getElementById("show-img")
+				imgDom.onload = function(){
+					var height = imgDom.offsetHeight;
+					var width = imgDom.offsetWidth;
+					console.log(height<width)
+					if(height<=width){
+						imgDom.style.height="100%";
+						imgDom.style.transform="translateX(-50%)";
+						var newWidth = imgDom.offsetWidth;
+						imgDom.style.left="50%";
+					}else{
+						imgDom.style.width="100%";
+						imgDom.style.transform="translateY(-50%)";
+						var newHeight = imgDom.offsetHeight;
+						imgDom.style.top="50%";
+					}
+				}
+		</script>
 	</body>
 </html>
